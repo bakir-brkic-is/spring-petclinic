@@ -1,20 +1,16 @@
 #!groovy
 pipeline {
-    
-    agent any
-    
-    stages {
-        stage('Maven install') {
-         	agent {
-                dockerfile {
-                    filename 'Dockerfile.build'
-                    label 'my-defined-label'
-                }
-            }
+    agent none
+    stages {     
+        stage('Maven Install') {
+            agent {         
+                docker {          
+                    image 'maven:3.5.0'         
+                }       
+            }       
             steps {
-               	sh 'mvn install'
+                sh 'mvn clean install'
             }
         }
     }
-
-}
+ }
