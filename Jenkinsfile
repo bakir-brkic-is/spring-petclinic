@@ -5,9 +5,14 @@ pipeline {
     
     stages {
         stage('Maven install') {
-         	agent { docker 'maven:3.5.0' } 
-            	steps {
-               		sh 'mvn install'
+         	agent {
+                dockerfile {
+                    filename 'Dockerfile.build'
+                    label 'my-defined-label'
+                }
+            }
+            steps {
+               	sh 'mvn install'
             }
         }
     }
