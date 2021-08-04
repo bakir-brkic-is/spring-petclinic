@@ -1,0 +1,5 @@
+FROM maven:3-openjdk-11 as pet-bulid
+WORKDIR petclinic
+COPY pom.xml .
+COPY src src
+RUN mvn clean package
