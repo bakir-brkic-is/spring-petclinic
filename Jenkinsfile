@@ -28,10 +28,10 @@ pipeline {
     
     post {
         always {
-            // junit 'build/reports/**/*.xml'
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
         }
         success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            echo 'Success!'
         }
         failure {
             echo 'This will run only if failed'
